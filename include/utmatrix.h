@@ -111,7 +111,11 @@ bool TVector<ValType>::operator==(const TVector<ValType> &v) const
 {
 	if ((Size == v.Size) && (StartIndex == v.StartIndex))
 	{
+<<<<<<< HEAD
+		for (int i = 0; i < Size - StartIndex; i++)
+=======
 		for (int i = 0; Size - StartIndex; i++)
+>>>>>>> 95020b6... Класс: Вектор
 			if (pVector[i] != v.pVector[i])
 				return false;
 		return true;
@@ -272,9 +276,9 @@ ValType TVector<ValType>::operator*(const TVector<ValType> &v)
 	{
 			//Тут у нас this + v, потому что this имеет больше значимых чисел
 		ValType Sum = 0;
-			for (int i = 0; i < Size; i++)
+			for (int i = 0; i < Size-StartIndex; i++)
 			{
-				Sum = pVector[i] * v.pVector[i];
+				Sum += pVector[i] * v.pVector[i];
 			}
 			return Sum;
 	}

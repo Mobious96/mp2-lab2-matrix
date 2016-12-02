@@ -176,7 +176,7 @@ TEST(TVector, can_add_scalar_to_vector)
 	TVector<int> t(2);
 	t[0] = 5;
 	t[1] = 6;
-	EXPECT_EQ((v == (t + 4)), true);
+	EXPECT_EQ((t == (v + 4)), true);
 }
 
 TEST(TVector, can_subtract_scalar_from_vector)
