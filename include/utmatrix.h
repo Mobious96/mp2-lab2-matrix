@@ -30,7 +30,7 @@ public:
   int GetSize() { return Size; };  // размер вектора
   int GetStartIndex() { return StartIndex; }; // индекс первого элемента
   ValType& operator[](int pos);             // доступ
-  bool operator==(TVector &v);  // сравнение
+  bool operator==(const TVector &v) const;  // сравнение
   bool operator!=(const TVector &v) const;  // сравнение
   TVector& operator=(const TVector &v);     // присваивание
 
@@ -107,11 +107,11 @@ ValType& TVector<ValType>::operator[](int pos)
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // сравнение
-bool TVector<ValType>::operator==(TVector<ValType> &v)
+bool TVector<ValType>::operator==(const TVector<ValType> &v) const
 {
-	if ((GetSize() == v.GetSize()) && (GetStartIndex() == v.GetStartIndex()))
+	if ((Size == v.Size) && (StartIndex == v.StartIndex))
 	{
-		for (int i = 0; GetSize() - GetStartIndex(); i++)
+		for (int i = 0; Size - StartIndex; i++)
 			if (pVector[i] != v.pVector[i])
 				return false;
 		return true;
