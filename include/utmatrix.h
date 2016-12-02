@@ -111,11 +111,7 @@ bool TVector<ValType>::operator==(const TVector<ValType> &v) const
 {
 	if ((Size == v.Size) && (StartIndex == v.StartIndex))
 	{
-<<<<<<< HEAD
 		for (int i = 0; i < Size - StartIndex; i++)
-=======
-		for (int i = 0; Size - StartIndex; i++)
->>>>>>> 95020b6... Класс: Вектор
 			if (pVector[i] != v.pVector[i])
 				return false;
 		return true;
