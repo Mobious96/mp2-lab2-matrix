@@ -212,7 +212,7 @@ TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 		}
 		else //this имеет меньше значимых чисел, просто меняем местами порядок сложения;
 		{
-			TVector<ValType> temp(Size, StartIndex);
+			TVector<ValType> temp(Size, v.StartIndex);
 			for (int i = 0; i < StartIndex; i++)
 			{
 				temp.pVector[i] = v.pVector[i];
@@ -249,7 +249,7 @@ TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 		}
 		else //this имеет меньше значимых чисел, просто меняем местами порядок сложения;
 		{
-			TVector<ValType> temp(Size, StartIndex);
+			TVector<ValType> temp(Size, v.StartIndex);
 			for (int i = 0; i < StartIndex; i++)
 			{
 				temp.pVector[i] = -v.pVector[i];
@@ -315,15 +315,22 @@ public:
 template <class ValType>
 TMatrix<ValType>::TMatrix(int s): TVector<TVector<ValType> >(s)
 {
+	for (int i = 0; i < s; i++)
+	{
+		TVector<ValType>(s, i);
+	}
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // конструктор копирования
-TMatrix<ValType>::TMatrix(const TMatrix<ValType> &mt):
-  TVector<TVector<ValType> >(mt) {}
+TMatrix<ValType>::TMatrix(const TMatrix<ValType> &mt): TVector<TVector<ValType> >(mt) 	
+{
+}
 
 template <class ValType> // конструктор преобразования типа
 TMatrix<ValType>::TMatrix(const TVector<TVector<ValType> > &mt):
-  TVector<TVector<ValType> >(mt) {}
+  TVector<TVector<ValType> >(mt)
+{
+}
 
 template <class ValType> // сравнение
 bool TMatrix<ValType>::operator==(const TMatrix<ValType> &mt) const
