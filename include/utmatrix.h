@@ -327,27 +327,44 @@ TMatrix<ValType>::TMatrix(const TMatrix<ValType> &mt): TVector<TVector<ValType> 
 }
 
 template <class ValType> // конструктор преобразования типа
-TMatrix<ValType>::TMatrix(const TVector<TVector<ValType> > &mt):
-  TVector<TVector<ValType> >(mt)
+TMatrix<ValType>::TMatrix(const TVector<TVector<ValType> > &mt): TVector<TVector<ValType> >(mt)
 {
 }
 
 template <class ValType> // сравнение
 bool TMatrix<ValType>::operator==(const TMatrix<ValType> &mt) const
 {
+	for (int i = 0; i < Size; i++)
+	{
+		if (mt.pVector[i] != pVector[i])
+			return false;
+		return true;
+	}
 	return 0;
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // сравнение
 bool TMatrix<ValType>::operator!=(const TMatrix<ValType> &mt) const
 {
-	return 0;
+	for (int i = 0; i < Size; i++)
+	{
+		if (mt.pVector[i] == pVector[i])
+			return true;
+		return false;
+	}
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // присваивание
 TMatrix<ValType>& TMatrix<ValType>::operator=(const TMatrix<ValType> &mt)
 {
-	throw "eads";
+	if (Size != mt.Size)
+	{
+		delete[] pVector;
+		pVector = new TVector<ValType>[mt.Size];
+	}
+	Size = mt.Size;
+	pVector = mt.pVector;
+	return *this;
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // сложение
